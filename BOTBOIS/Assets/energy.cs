@@ -17,16 +17,7 @@ public class energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(collider.OverlapCollider())
-        if (isInCharger)
-        {
-            Charge(); 
 
-        }
-        else
-        {
-
-        }
     }
     IEnumerator Charge()
     {
