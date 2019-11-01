@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class energy : MonoBehaviour
 {
-    int charge;
-    bool isInCharger;
+    public bool isCharging;
 
-    CircleCollider2D collider;
+    int charge;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,12 +17,21 @@ public class energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
 
+=======
+        if (isCharging)
+        {
+            StartCoroutine(ChargeMe());
+        }
+>>>>>>> Stashed changes
     }
-    IEnumerator Charge()
+
+    public IEnumerator ChargeMe()
     {
         charge = charge + 10;
-        yield return new WaitForSeconds(.1f);
-        
+        yield return new WaitForSeconds(5);
+        isCharging = false;
+        print("charging");
     }
 }

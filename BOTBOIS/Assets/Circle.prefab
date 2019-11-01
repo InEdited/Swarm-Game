@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 5594368455267629821}
   - component: {fileID: -2296752720066851110}
   - component: {fileID: -3086956931175697057}
-  m_Layer: 0
+  - component: {fileID: 21309686}
+  m_Layer: 8
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6002253025368232310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6467028, y: 0.52840096, z: 1.271225}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -159,8 +160,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c121a5e928c34fa8287211a285170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9
+  speed: 1733
   walkAcceleration: 75
   airAcceleration: 30
   groundDeceleration: 70
   jumpHeight: 4
+  rigidBody: {fileID: 5594368455267629821}
+--- !u!114 &21309686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6002253025368232310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea81a494194fd994688d2b6c76c1d178, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
