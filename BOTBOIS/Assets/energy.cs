@@ -6,7 +6,7 @@ public class energy : MonoBehaviour
 {
     public bool isCharging;
 
-    int charge;
+    public int charge;
 
     // Start is called before the first frame update
     void Start()
@@ -18,13 +18,19 @@ public class energy : MonoBehaviour
     void Update()
     {
 
+        if (isCharging &charge <100)
+        {
+            //StartCoroutine(ChargeMe());
+            charge += Mathf.CeilToInt(5f* Time.deltaTime);
+
     }
 
     public IEnumerator ChargeMe()
     {
         charge = charge + 10;
-        yield return new WaitForSeconds(5);
+      
         isCharging = false;
         print("charging");
+        yield return new WaitForSeconds(1f);
     }
 }
