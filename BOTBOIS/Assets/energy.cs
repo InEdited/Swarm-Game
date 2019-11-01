@@ -17,14 +17,7 @@ public class energy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< Updated upstream
 
-=======
-        if (isCharging)
-        {
-            StartCoroutine(ChargeMe());
-        }
->>>>>>> Stashed changes
     }
 
     public IEnumerator ChargeMe()
