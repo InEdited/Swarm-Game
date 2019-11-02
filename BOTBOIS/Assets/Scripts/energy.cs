@@ -22,6 +22,7 @@ public class energy : MonoBehaviour
         {
             //StartCoroutine(ChargeMe());
             charge += Mathf.CeilToInt(5f* Time.deltaTime);
+        }
 
     }
 
