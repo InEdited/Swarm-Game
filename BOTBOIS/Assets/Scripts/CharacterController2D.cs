@@ -20,6 +20,8 @@ public class CharacterController2D : MonoBehaviour
 
     public Rigidbody2D rigidBody;
 
+    public bool isActivated;
+
     private CircleCollider2D boxCollider;
 
     private Vector2 velocity;
@@ -34,7 +36,8 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<CircleCollider2D>();
-        botSpeed = speed * Random.Range(0.75f, 1.25f);
+        botSpeed = speed * Random.Range(0.9f, 1.1f);
+  
     }
 
     private void Update()
@@ -44,19 +47,20 @@ public class CharacterController2D : MonoBehaviour
 
 
 
-
-        if (moveInput != 0)
+        if (isActivated)
         {
-            velocity.x = moveInput * Time.deltaTime;
-            rigidBody.velocity = velocity * botSpeed;
-            
+            if (moveInput != 0)
+            {
+                velocity.x = moveInput * Time.deltaTime;
+                rigidBody.velocity = velocity * botSpeed;
 
-        }
-        else
-        {
-            //velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-        }
 
+            }
+            else
+            {
+                //velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            }
+        }
         
         //transform.Translate(velocity * Time.deltaTime);
 

@@ -20,7 +20,12 @@ public class Charger : MonoBehaviour
         foreach (Collider2D chargable in list)
         {
             print("is not empty");
-            chargable.GetComponent<energy>().isCharging = true;
+            chargable.GetComponent<Energy>().isCharging = true;
         }
+        for (int i = 0; i < list.Length; i++)
+        {
+            list[i] = null;
+        }
+
     }
 }

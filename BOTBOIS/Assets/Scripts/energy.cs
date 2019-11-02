@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class energy : MonoBehaviour
+public class Energy : MonoBehaviour
 {
     public bool isCharging;
 
     public int charge;
+
+    public Sprite[] sprites;
 
     // Start is called before the first frame update
     void Start()
@@ -20,18 +22,57 @@ public class energy : MonoBehaviour
 
         if (isCharging &charge <100)
         {
-            //StartCoroutine(ChargeMe());
-            charge += Mathf.CeilToInt(5f* Time.deltaTime);
+            StopCoroutine(Discharge());
+            StartCoroutine(Charge());
+        }
+        else
+        {
+            StopCoroutine(Charge());
+            StartCoroutine(Discharge());
+        }
+
+        if (charge > 75)
+        {
+            this.GetComponent<CharacterController2D>().isActivated = true;
+            this.GetComponent<SpriteRenderer>().sprite = sprites[0];
+            Debug.Log("More than 75");
+        }
+        else if(charge>50 && charge <= 75)
+        {
+            this.GetComponent<CharacterController2D>().isActivated = true;
+            this.GetComponent<SpriteRenderer>().sprite = sprites[1];
+        }
+        else if (charge <= 50&&charge>0)
+        {
+            this.GetComponent<CharacterController2D>().isActivated = true;
+            this.GetComponent<SpriteRenderer>().sprite = sprites[2];
+
+        }
+        else if (charge <= 0)
+        {
+            this.GetComponent<CharacterController2D>().isActivated = false;
         }
 
     }
 
-    public IEnumerator ChargeMe()
+    private IEnumerator Discharge()
     {
-        charge = charge + 10;
-      
-        isCharging = false;
-        print("charging");
-        yield return new WaitForSeconds(1f);
+
+        while (true)
+        {
+            yield return new WaitForSeconds(0.1f);
+            charge -= Mathf.FloorToInt(1f*Time.deltaTime);
+        }
     }
+
+    private IEnumerator Charge()
+    {
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            charge++;
+        }
+    }
+
 }

@@ -6,6 +6,9 @@ public class SwarmCounter : MonoBehaviour
 {
     List<GameObject> bots = new List<GameObject>();
     public int counter = 0;
+ 
+    private GameObject currentFollow;
+    public SmoothCamera2D cameraFollow;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,16 @@ public class SwarmCounter : MonoBehaviour
 
     private void Update()
     {
-        
+        float highX = -999999;
+        for (int i = 0; i < bots.Count; i++)
+        {
+            if (bots[i].transform.position.x > highX)
+            {
+                currentFollow = bots[i];
+                highX = currentFollow.transform.position.x;
+                cameraFollow.target = currentFollow.transform;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
