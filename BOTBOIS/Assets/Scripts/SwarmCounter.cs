@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwarmCounter : MonoBehaviour
 {
     List<GameObject> bots = new List<GameObject>();
+
+    public Text counterUI;
     public int counter = 0;
  
     private GameObject currentFollow;
@@ -44,6 +47,11 @@ public class SwarmCounter : MonoBehaviour
             bots.Add(collision.gameObject);
             counter++;
         }
+        updateUI();
+    }
+
+    private void updateUI() {
+        counterUI.text = counter.ToString();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -53,5 +61,6 @@ public class SwarmCounter : MonoBehaviour
             bots.Remove(collision.gameObject);
             counter--;
         }
+        updateUI();
     }
 }

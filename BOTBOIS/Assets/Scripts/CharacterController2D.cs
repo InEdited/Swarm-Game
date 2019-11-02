@@ -6,6 +6,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     float speed = 9;
 
+    public SwarmCounter counterObject;
+
     [SerializeField, Tooltip("Acceleration while grounded.")]
     float walkAcceleration = 75;
 
@@ -40,10 +42,12 @@ public class CharacterController2D : MonoBehaviour
   
     }
 
+
     private void Update()
     {
         // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
         float moveInput = Input.GetAxis("Horizontal");
+        bool jumpInput = Input.GetKeyDown(KeyCode.Space);
 
 
 
@@ -51,14 +55,15 @@ public class CharacterController2D : MonoBehaviour
         {
             if (moveInput != 0)
             {
-                velocity.x = moveInput * Time.deltaTime;
-                rigidBody.velocity = velocity * botSpeed;
-
-
+                rigidBody.velocity = new Vector2(botSpeed * moveInput * Time.deltaTime, rigidBody.velocity.y);
             }
             else
             {
                 //velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            }
+
+            if (jumpInput) {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpHeight * counterObject.counter));
             }
         }
         

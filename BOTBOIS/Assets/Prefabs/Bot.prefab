@@ -133,11 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 105c121a5e928c34fa8287211a285170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 200
+  counterObject: {fileID: 0}
   walkAcceleration: 75
   airAcceleration: 30
   groundDeceleration: 70
-  jumpHeight: 4
+  jumpHeight: 50
   rigidBody: {fileID: 5594368455267629821}
   isActivated: 1
 --- !u!114 &21309686
@@ -153,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isCharging: 0
-  charge: -12
+  charge: 64
   sprites:
   - {fileID: 21300000, guid: bb479beca446b3342ab1ee451f549a1e, type: 3}
   - {fileID: 21300000, guid: b0af5fce9549dbb4088719812f059ac5, type: 3}
