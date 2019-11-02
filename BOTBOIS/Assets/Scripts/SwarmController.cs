@@ -6,7 +6,10 @@ public class SwarmController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject spider;
-    public bool assmebling = false;
+    public bool assembling = false;
+    public Vector3 centerPosition;
+
+    public float explosionForce = 5f;
 
     void Start()
     {
@@ -19,6 +22,22 @@ public class SwarmController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T)) {
             IntoTheSpiderverse();
         }
+        if (assembling) {
+            bool init = true;
+            foreach (Transform child in transform) {
+                if ((centerPosition - child.position).magnitude > 1.5) {
+                        init = false;
+                }
+            }
+
+
+            if (init) {
+                InitiateSomething();
+
+                assembling = false;
+            }
+
+        }
         
     }
 
@@ -29,38 +48,22 @@ public class SwarmController : MonoBehaviour
             Rigidbody2D rigidbody = child.GetComponent<Rigidbody2D>();
             rigidbody.gravityScale = 0;
             rigidbody.velocity = centerOfGravity - child.position;
-            rigidbody.drag = 1;//Mathf.Sqrt(rigidbody.velocity.magnitude);
+            rigidbody.drag = 1;
             
-            child.GetComponent<Collider2D>().isTrigger = true;
+            child.GetComponent<Collider2D>().enabled = false;
+            //child.GetComponent<Collider2D>().isTrigger = true;
         }
-
-        CircleCollider2D center = GetComponent<CircleCollider2D>();
-        center.enabled = true;
-        center.offset = centerOfGravity - transform.position;
-        center.radius = 1;
-
-
-    }
-
-    void OnColliderEnter() {
-        bool init = true;
-        int in_coll = 0;
-        foreach (Transform child in transform) {
-            Vector3 offset = GetComponent<CircleCollider2D>().offset;
-            if((child.position - (transform.position + offset)).magnitude > (1 + child.GetComponent<CircleCollider2D>().radius)) {
-               init = false; 
-            }
-            in_coll++;
-        }
-        Debug.Log("In" + in_coll);
-
-        if(init) {
-            InitiateSomething();
-        }
+        centerPosition = centerOfGravity;
+        assembling = true;
     }
 
     void InitiateSomething() {
-        Debug.Log("Avengers Assemble");
+        foreach (Transform child in transform) {
+            Rigidbody2D rb = child.GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.velocity = new Vector2(0.25f*explosionForce, 0.25f*explosionForce);
+        }
 
+        Instantiate(spider, centerPosition, Quaternion.Euler(0f, 0f, 0f));
     }
 }
