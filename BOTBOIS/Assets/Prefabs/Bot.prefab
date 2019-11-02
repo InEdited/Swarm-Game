@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
-  counterObject: {fileID: 0}
+  counterObject: {fileID: 3318596870373342747, guid: f2451d79224dd61458f5dc204beefe39,
+    type: 3}
   walkAcceleration: 75
   airAcceleration: 30
   groundDeceleration: 70

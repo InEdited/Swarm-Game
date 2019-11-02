@@ -22,7 +22,7 @@ public class SwarmCounter : MonoBehaviour
     void FixedUpdate()
     {
         //counter = bots.Count;
-        Debug.Log(counter);
+//        Debug.Log(counter);
         //bots.Clear();
     }
 

@@ -41,11 +41,15 @@ public class SpiderMovement : MonoBehaviour
                 FlipDirection();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && (wallAttached || Mathf.Abs(rigidbody.rotation % 360) == 180)) {
+            letItGo();
+        }
         
     }
 
     void FlipDirection() {
-        GetComponent<SpriteRenderer>().flipX = true;
+        GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         directionRight = !directionRight;
         directionUp = !directionUp;
     }
@@ -108,24 +112,35 @@ public class SpiderMovement : MonoBehaviour
             climbRightWall();
     }
 
+    void letItGo() {
+        rigidbody.rotation = 0;
+        wallAttached = false;
+        directionRight = true;
+        rigidbody.gravityScale = 1;
+    }
+
     void climbLeftWall() {
         rigidbody.rotation -= 90;
         switch(Mathf.Abs(rigidbody.rotation % 360)) {
             case 0:
                 wallAttached = false;
                 directionRight = false;
+                rigidbody.gravityScale = 1;
                 break;
             case 180:
                 wallAttached = false;
                 directionRight = true;
+                rigidbody.gravityScale = -1;
                 break;
             case 90:
                 wallAttached = true;
                 directionUp = true;
+                rigidbody.gravityScale = 0f;
                 break;
             case 270:
                 wallAttached = true;
                 directionUp = false;
+                rigidbody.gravityScale = 0f;
                 break;
         }
     }
@@ -139,18 +154,22 @@ public class SpiderMovement : MonoBehaviour
             case 0:
                 wallAttached = false;
                 directionRight = false;
+                rigidbody.gravityScale = 1;
                 break;
             case 180:
                 wallAttached = false;
                 directionRight = true;
+                rigidbody.gravityScale = -1;
                 break;
             case 90:
                 wallAttached = true;
                 directionUp = true;
+                rigidbody.gravityScale = 0;
                 break;
             case 270:
                 wallAttached = true;
                 directionUp = false;
+                rigidbody.gravityScale = 0;
                 break;
         }
     }

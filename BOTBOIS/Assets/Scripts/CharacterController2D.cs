@@ -42,6 +42,10 @@ public class CharacterController2D : MonoBehaviour
   
     }
 
+    private void Start() {
+        counterObject = GameObject.Find("SwarmCounter").GetComponent<SwarmCounter>();
+    }
+
 
     private void Update()
     {
