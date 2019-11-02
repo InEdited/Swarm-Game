@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 21309686}
   m_Layer: 8
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,3 +178,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea81a494194fd994688d2b6c76c1d178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCharging: 0
+  charge: 0
